@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Search By Name{% endblock title %}
+
+{% block content %}
+
+<main id="main">
+    <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+        <div class="container">
+            <h3 class="text-center">Search By Name</h3>
+            <br>
+
+            <form action="." method='GET' class="row g-3">
+                  <div class="col-md-10">
+                    <input name="search" class="form-control" type="text" placeholder="Search">
+                  </div>
+                  <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary mb-3">Search</button>
+                  </div>
+
+            </form>
+            <br>
+            <br>
+            <!--Case Table-->
+
+            <table>
+                <div class="row">
+                    {% for name in names %}
+                    <span class="col-md-4 h6">
+                        <a href="{% url "core:caseDetails" name.id %}">{{name|upper}}</a>
+                    </span>               
+                    {% endfor %}
+                </div>
+              </table>
+              <br>
+                      <!--PAGINATION-->
+            <div class="d-flex justify-content-center flex-nowrap">
+                <nav aria-label="Page navigation example">
+                {% if names.has_other_pages %}
+                    
+                    <ul class="pagination mx-auto">
+                    {% if names.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ names.previous_page_number }}">Previous</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                    {% endif %}                    
+                    <span class="page-item">
+                        <li class="page-link disabled">
+                        Page {{names.number}} of {{names.paginator.num_pages}}
+                    </li>
+                    </span>
+                    
+                    {% if names.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ names.next_page_number }}">Next</a></li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                    {% endif %}
+
+                    </ul>
+                {% endif %}              
+                </nav>
+            </div>          
+        </div>
+
+
+        </div>
+
+      </div>
+
+</main>
+
+{% endblock content %}

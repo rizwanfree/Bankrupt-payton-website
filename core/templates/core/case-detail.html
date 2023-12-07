@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+<main id="main">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <th class="text-center h3" colspan=2 ><h3>{{name|upper}}</h3></th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CASE #</td>
+                        <td>{{name.caseNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>CH:</td>
+                        <td>{{name.ch}}</td>
+                    </tr>
+                    <tr>
+                        <td>FILED:</td>
+                        <td>{{name.filed|date:'M-d-Y'}}</td>
+                    </tr>
+                    <tr>
+                        <td>DISCHARCHED:</td>
+                        <td>{{name.discharged}}</td>
+                    </tr>
+                    <tr>
+                        <td>ADDRESS:</td>
+                        <td>{{name.address}}</td>
+                    </tr>
+                    <tr>
+                        <td>ZIP CODE:</td>
+                        <td>{{name.zip}}</td>
+                    </tr>
+                    <tr>
+                        <td>STATE:</td>
+                        <td>{{name.state.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<br>
+<br>
+{% endblock content %}

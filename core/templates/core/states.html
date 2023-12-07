@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search By State
+{% endblock %}
+
+{% block content %}
+<main id="main">
+    <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+        <div class="container">
+            <h3 class="text-center">Search By State</h3>
+            <br>
+            <!--Case Table-->
+
+            <table>
+                <div class="row">
+                    {% for s in states %}
+                    <span class="col-md-4 h6">
+                        <a href="{% url 'core:bystate' s.id %}">{{s.name|upper}}</a>
+                    </span>
+                    {% endfor %}
+                </div>
+              </table>
+              <br>
+        </div>
+    </div>
+</main>
+{% endblock %}
