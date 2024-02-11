@@ -32,6 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    'admin_interface',
+    'colorfield',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'import_export',
+    'tinymce',
+
     'core',
+    'blog',
+
+
 ]
 
 MIDDLEWARE = [
@@ -57,7 +67,7 @@ ROOT_URLCONF = 'bankruptcy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,6 +90,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        ## PostgresSQL Setup
+        # 'ENGINE' : 'django.db.backends.postgresql',
+        # 'NAME': 'bankruptDB',
+        # 'USER': 'postgres',
+        # 'PASSWORD': 'admin112',
+        # 'HOST': 'localhost',
+        # 'PORT': '5432'
     }
 }
 

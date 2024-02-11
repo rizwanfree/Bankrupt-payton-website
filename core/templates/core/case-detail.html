@@ -8,28 +8,24 @@
         <div class="container">
             <table class="table">
                 <thead>
-                    <th class="text-center h3" colspan=2 ><h3>{{name|upper}}</h3></th>
+                    <th class="text-center h3" colspan=2 ><h3>{{name.first_name|upper}} {{name.last_name|upper}}</h3></th>
                 </thead>
                 <tbody>
                     <tr>
                         <td>CASE #</td>
-                        <td>{{name.caseNo}}</td>
+                        <td>{{name.case_no}}</td>
                     </tr>
                     <tr>
                         <td>CH:</td>
-                        <td>{{name.ch}}</td>
+                        <td>{{name.chapter}}</td>
                     </tr>
                     <tr>
                         <td>FILED:</td>
-                        <td>{{name.filed|date:'M-d-Y'}}</td>
-                    </tr>
-                    <tr>
-                        <td>DISCHARCHED:</td>
-                        <td>{{name.discharged}}</td>
+                        <td>{{name.date_filed}}</td>
                     </tr>
                     <tr>
                         <td>ADDRESS:</td>
-                        <td>{{name.address}}</td>
+                        <td>{{name.street1}} {{name.street2}} {{name.street3}}</td>
                     </tr>
                     <tr>
                         <td>ZIP CODE:</td>
@@ -37,10 +33,11 @@
                     </tr>
                     <tr>
                         <td>STATE:</td>
-                        <td>{{name.state.name}}</td>
+                        <td>{{name.state}}</td>
                     </tr>
                 </tbody>
             </table>
+            <p class="text-end"><a href="{% url "core:contact" %}">Contact us to remove this case record</a></p>
         </div>
     </div>
 </main>

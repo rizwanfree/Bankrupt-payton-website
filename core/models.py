@@ -1,119 +1,52 @@
 from django.db import models
 from django.urls import reverse
 from  django.template.defaultfilters import slugify
-
+from .utils import generate_slug
 
 # Create your models here.
 
 
-ZONES = (
-    ('EASTERN', 'EASTERN'),
-    ('WESTERN', 'WESTERN'),
-    ('SOUTHERN', 'SOUTHERN'),
-    ('NORTHERN', 'NORTHERN'),
-)
-
-
-class State(models.Model):
-    name = models.CharField(max_length=200)
-    sn = models.CharField(max_length=3, blank=True, null=True)
-
-    def __str__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        self.name = self.name.upper()
-        self.sn = self.sn.upper()
-        super(State, self).save(*args, **kwargs)
-    class Meta:
-        ordering = ('name',)
-
-class District(models.Model):
-    state = models.ForeignKey(
-        State, on_delete=models.CASCADE, blank=False, null=False)
-    name = models.CharField(max_length=250, null=False, blank=False)
-    zone = models.CharField(
-        max_length=20, choices=ZONES, blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.name} ({self.zone})"
-
-    def save(self, *args, **kwargs):
-        self.name = self.name.upper()
-        super(District, self).save(*args, **kwargs)
-
-
-class Resource(models.Model):
-    state = models.ForeignKey(
-        State, on_delete=models.CASCADE, blank=False, null=False)
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
-    city = models.CharField(max_length=250, null=True, blank=True)
-    phone = models.CharField(max_length=15, null=True, blank=True)
-    tollFree = models.CharField(max_length=15, null=True, blank=True)
-
-    def __str__(self):
-        if self.city is None:
-            return f"{self.district.name} ({self.district.zone})"
-        else:
-            return self.city.upper()
-
-    def save(self, *args, **kwargs):
-        if self.city is None:
-            super(Resource, self).save(*args, **kwargs)
-        else:
-            self.city = self.city.upper()
-            super(Resource, self).save(*args, **kwargs)
-
-
 class Case(models.Model):
-    name = models.CharField(max_length=250)
-    caseNo = models.CharField(max_length=100)
-    ch = models.IntegerField()    
-    discharged = models.DateTimeField(null=True, blank=True)
-    address = models.CharField(max_length=350)
-    zip = models.CharField(max_length=25)
-    state = models.ForeignKey(State, on_delete=models.PROTECT)
-    filed = models.DateTimeField(null=True, blank=True)
+    case_no = models.CharField(max_length=100)
+    district = models.CharField(max_length=50)
+    chapter = models.IntegerField()
+    assets = models.IntegerField()
+    date_filed = models.CharField(null=True, blank=True, max_length=50)
+    first_name = models.CharField(max_length=255)
+    middle_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255)
+    ssn = models.CharField(max_length=50)
+    street1 = models.CharField(max_length=255)
+    street2 = models.CharField(max_length=255, null=True, blank=True)
+    street3 = models.CharField(max_length=255, null=True, blank=True)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=10)
+    zip = models.CharField(max_length=10)
+    slug = models.SlugField(unique=True)
+
     class Meta:
-        ordering = ('name',)
+        ordering = ('first_name',)
 
     def __str__(self):
-        return self.name
-
-    # def get_absolute_url(self):
-    #     return reverse("case-details", kwargs={"slug": self.slug})
-
-    # def save(self, *args, **kwargs):
-    #     #if not self.slug:
-    #     self.slug = slugify(self.name + '-' + str(self.id))
-    #     return super().save(*args, **kwargs)
-
-# class State(models.Model):
-#     name = models.CharField(max_length=200)
-#     sn = models.CharField(max_length=3, blank=True, null=True)
-
-#     def __str__(self):
-#         return self.name
+        return self.first_name + ' ' + self.last_name
     
-#     def save(self, *args, **kwargs):
-#         self.name = self.name.upper()
-#         self.sn = self.sn.upper()
-#         super(State, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        self.slug = generate_slug(self.first_name + ' ' + self.last_name)
+        return super().save(*args, **kwargs)
+
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+    company_name = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255)
+    date_created = models.DateTimeField(editable=False, auto_now_add=True)
+    content = models.TextField()
+
+    class Meta:
+        ordering = ('date_created',)
     
-#     class Meta:
-#         ordering = ('name',)
+    def __str__(self):
+        return self.subject
 
 
-# class Case(models.Model):
-#     name = models.CharField(max_length=250)
-#     caseNumber = models.CharField(max_length=50)
-#     ch = models.IntegerField()    
-#     discharged = models.DateField()
-#     address = models.TextField()
-#     zip = models.CharField(max_length=20, blank=True, null=True)
-#     state_id = models.ForeignKey(State, on_delete=models.CASCADE)
-#     bankruptcy = models.CharField(max_length=50)
-#     filed = models.DateField()
 
-#     def __str__(self):
-#         return self.name

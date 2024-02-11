@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Case, State
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Case
+from .forms import ContactForm
 import string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -15,7 +16,7 @@ def searchByName(request):
     names = None
     if request.GET.get('search'):
         search = request.GET.get('search')
-        names = Case.objects.filter(name__icontains=search).all()
+        names = Case.objects.filter(last_name__icontains=search).all()
     else:
         names = Case.objects.all()
     paginator = Paginator(names, 100)
@@ -35,21 +36,30 @@ def searchByName(request):
     return render(request, 'core/byname.html', context)
 
 
-def caseDetails(request, pk):
-    name = get_object_or_404(Case, pk=pk)
+def caseDetails(request, slug):
+    name = get_object_or_404(Case, slug=slug)
     context = {
         'name': name
     }
     return render(request, 'core/case-detail.html', context)
 
+def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('')
+    else:        
+        form = ContactForm()
+        return render(request, 'core/contact.html', {'form': form})
 
-def stateList(request):
-    states = State.objects.all()
+# def stateList(request):
+#     states = State.objects.all()
 
-    context = {
-        'states': states
-    }
-    return render(request, 'core/states.html', context)
+#     context = {
+#         'states': states
+#     }
+#     return render(request, 'core/states.html', context)
 
 
 def searchByState(request, sid):
