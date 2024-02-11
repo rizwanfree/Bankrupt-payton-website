@@ -3,7 +3,6 @@ from .models import Contact
 from django import forms
 
 class ContactForm(forms.ModelForm):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -15,4 +14,4 @@ class ContactForm(forms.ModelForm):
 
     class Meta(object):
         model = Contact
-        fields = ['name', 'email', 'company_name', 'subject', 'content']
+        fields = '__all__'

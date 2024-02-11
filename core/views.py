@@ -44,22 +44,17 @@ def caseDetails(request, slug):
     return render(request, 'core/case-detail.html', context)
 
 def contact(request):
+    form = ContactForm()
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
+            print(request.POST)
             form.save()
-            return redirect('')
-    else:        
-        form = ContactForm()
-        return render(request, 'core/contact.html', {'form': form})
-
-# def stateList(request):
-#     states = State.objects.all()
-
-#     context = {
-#         'states': states
-#     }
-#     return render(request, 'core/states.html', context)
+            return redirect('contact')
+        else:
+            print('Problem')
+    context = {'form': form}
+    return render(request, 'core/contact.html', context)
 
 
 def searchByState(request, sid):
