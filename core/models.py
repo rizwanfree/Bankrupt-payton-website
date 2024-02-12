@@ -39,7 +39,7 @@ class Contact(models.Model):
     email = models.CharField(max_length=255)
     company_name = models.CharField(max_length=255)
     subject = models.CharField(max_length=255)
-    date_created = models.DateTimeField(editable=False, auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
 
     class Meta:
