@@ -1,8 +1,12 @@
 from django.forms import ModelForm
-from .models import Contact
+from .models import ContactUs
 from django import forms
 
-class ContactForm(forms.ModelForm):
+class ContactForm(ModelForm):
+    class Meta:
+        model = ContactUs
+        fields = '__all__'
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -12,6 +16,5 @@ class ContactForm(forms.ModelForm):
         self.fields['subject'].widget.attrs.update({'class': 'form-control', 'type': 'text', 'placeholder': 'Subject'})
         self.fields['content'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Message'})
 
-    class Meta(object):
-        model = Contact
-        fields = '__all__'
+
+

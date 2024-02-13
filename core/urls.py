@@ -10,5 +10,5 @@ urlpatterns = [
     #path('state/', views.stateList, name='states'),
     #path('bystate/<int:sid>', views.searchByState, name='bystate'),
     path('casedetails/<slug>/', views.caseDetails, name='caseDetails'),
-    path('contact/', views.contact, name='contact')
+    path('contact/', views.contact_us, name='contact')
 ]

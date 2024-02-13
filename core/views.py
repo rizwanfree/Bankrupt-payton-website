@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Case
+from blog.models import Post
 from .forms import ContactForm
 import string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -9,7 +10,15 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def index(request):
-    return render(request, 'core/index.html')
+    posts = Post.published.all().order_by('-id')[:4]
+    posts1 = posts[:2]
+    posts2 = posts[2:]
+    print(len(posts2))
+    context = {
+        'posts1': posts1,
+        'posts2': posts2
+    }
+    return render(request, 'core/index.html', context)
 
 
 def searchByName(request):
@@ -43,18 +52,21 @@ def caseDetails(request, slug):
     }
     return render(request, 'core/case-detail.html', context)
 
-def contact(request):
+
+def contact_us(request):
     form = ContactForm()
-    if request.method == "POST":
+    context = {'form': form}
+    if request.method == 'POST':        
         form = ContactForm(request.POST)
         if form.is_valid():
             print(request.POST)
             form.save()
-            return redirect('contact')
+            return render(request, 'core/contact.html', context)
+            #return redirect('core:index')
         else:
-            print('Problem')
-    context = {'form': form}
+            return render(request, 'core/contact.html', context)
     return render(request, 'core/contact.html', context)
+    
 
 
 def searchByState(request, sid):

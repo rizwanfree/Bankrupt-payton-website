@@ -34,7 +34,8 @@ class Case(models.Model):
         self.slug = generate_slug(self.first_name + ' ' + self.last_name)
         return super().save(*args, **kwargs)
 
-class Contact(models.Model):
+
+class ContactUs(models.Model):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     company_name = models.CharField(max_length=255)

@@ -5,14 +5,20 @@ from django.views.generic import ListView
 # Create your views here.
 
 def blog_index(request):
-    return render(request, 'blog/post/blog.html')
+    posts = Post.published.all()
+    recent_posts = Post.published.all().order_by('-id')[:10]
+    context = {
+        'posts': posts,
+        'recent_posts': recent_posts
+        }
+    return render(request, 'blog/post/blog.html', context)
 
 
-class PostListView(ListView):
-    queryset = Post.published.all()
-    context_object_name = 'posts'
-    paginate_by = 3
-    template_name = 'blog/post/blog.html'
+# class PostListView(ListView):
+#     queryset = Post.published.all()
+#     context_object_name = 'posts'
+#     paginate_by = 3
+#     template_name = 'blog/post/blog.html'
 
 
 def post_detail(request, year, month, day, post):
