@@ -65,7 +65,7 @@ def contact_us(request):
             #return redirect('core:index')
         else:
             return render(request, 'core/contact.html', context)
-    return render(request, 'core/contact.html', context)
+    return render(request, 'core/contactus.html', context)
     
 
 
