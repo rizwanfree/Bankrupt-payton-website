@@ -35,19 +35,5 @@ class Case(models.Model):
         return super().save(*args, **kwargs)
 
 
-class ContactUs(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    company_name = models.CharField(max_length=255)
-    subject = models.CharField(max_length=255)
-    date_created = models.DateTimeField(auto_now_add=True)
-    content = models.TextField()
-
-    class Meta:
-        ordering = ('date_created',)
-    
-    def __str__(self):
-        return self.subject
-
 
 
