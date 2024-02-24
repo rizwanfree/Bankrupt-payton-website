@@ -5,23 +5,23 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
+          <div class="col-md-6 col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box icon-box-pink">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4 class="title"><a href="{% url "core:byname" %}">Search By Name</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <p class="description">Quickly find the information you need with our streamlined search feature. Enter a name and get accurate, speedy results for personal or professional records.</p>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-md-6 col-lg-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="icon-box icon-box-cyan">
               <div class="icon"><i class="bx bx-file"></i></div>
-              {% comment %} <h4 class="title"><a href="{% url 'core:states' %}">Search By State</a></h4> {% endcomment %}
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <h4 class="title"><a href="{% url 'core:byname' %}">Search By State</a></h4>
+              <p class="description">Explore records based on location. Use our efficient search feature to find information specific to a state. Ideal for accessing local, regional, or state-related data quickly and accurately.</p>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+          {% comment %} <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-box icon-box-green">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
               <h4 class="title"><a href="">Search By Year</a></h4>
@@ -35,7 +35,7 @@
               <h4 class="title"><a href="">Search By Case Number</a></h4>
               <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
             </div>
-          </div>
+          </div> {% endcomment %}
 
         </div>
 

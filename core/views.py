@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Case
 from blog.models import Post
-from .forms import ContactForm
+#from .forms import ContactForm
 import string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from contactforms.forms import ContactForm
 
 
 # Create your views here.
@@ -48,24 +49,23 @@ def searchByName(request):
 def caseDetails(request, slug):
     name = get_object_or_404(Case, slug=slug)
     context = {
-        'name': name
+        'name': name,
     }
     return render(request, 'core/case-detail.html', context)
 
 
-def contact_us(request):
-    form = ContactForm()
-    context = {'form': form}
-    if request.method == 'POST':        
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            print(request.POST)
-            form.save()
-            return render(request, 'core/contact.html', context)
-            #return redirect('core:index')
-        else:
-            return render(request, 'core/contact.html', context)
-    return render(request, 'core/contactus.html', context)
+# def contact_us(request):
+#     form = ContactForm()
+#     context = {'form': form}
+#     if request.method == 'POST':        
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             print(request.POST)
+#             form.save()
+#             return render(request, 'core/contact.html', context)
+#         else:
+#             return render(request, 'core/contact.html', context)
+#     return render(request, 'core/contact.html', context)
     
 
 
