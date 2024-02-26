@@ -29,8 +29,21 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 DEBUG = False
 
 ALLOWED_HOSTS = ['bankruptcylog.com', 'www.bankruptcylog.com', '44.214.59.140']
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
 CSRF_TRUSTED_ORIGINS = ['bankruptcylog.com'] 
 CSRF_TRUSTED_ORIGINS = ['https://www.bankruptcylog.com']
+
+CORS_ORIGIN_WHITELIST = (
+    'bankruptcylog.com',
+    'https://www.bankruptcylog.com',
+    'https://bankruptcylog.com',
+)
 
 # Application definition
 
