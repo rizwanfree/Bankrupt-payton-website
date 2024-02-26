@@ -28,7 +28,7 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['bankruptcylog.com', 'www.bankruptcylog.com']
+ALLOWED_HOSTS = ['bankruptcylog.com', 'www.bankruptcylog.com', '44.214.59.140']
 
 
 # Application definition
