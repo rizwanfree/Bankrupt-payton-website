@@ -22,15 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = 'django-insecure-v^$hncf3p(2q3++4%qftw7vx-8j79j(-(0c85)@5*n0fu5agxf'
-
-# with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
-#     SECRET_KEY = f.read().strip()
+with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*'] #['bankruptcylog.com', 'www.bankruptcylog.com']
+ALLOWED_HOSTS = ['bankruptcylog.com', 'www.bankruptcylog.com']
 
 
 # Application definition
