@@ -101,12 +101,11 @@ def searchByName(request):
 
 
 def caseDetails(request, slug):
-    name = get_object_or_404(Case, slug=slug)
-    
-    filed = datetime.strptime(name.date_filed, "%m-%d-%Y")
+    name = get_object_or_404(Case, slug=slug)    
+    filed_date = datetime.strptime(name.date_filed, "%m-%d-%Y")
     context = {
         'name': name,
-        'filed_date': filed,
+        'filed_date': filed_date,
     }
     return render(request, 'core/case-detail.html', context)
 
