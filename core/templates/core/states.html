@@ -16,7 +16,7 @@ Search By State
                 <div class="row">
                     {% for s in states %}
                     <span class="col-md-4 h6">
-                        <a href="#">{{s|upper}}</a>
+                        <a href="#">{{s|upper}} {{s.key}}</a>
                     </span>
                     {% endfor %}
                 </div>
