@@ -29,7 +29,8 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 DEBUG = False
 
 ALLOWED_HOSTS = ['bankruptcylog.com', 'www.bankruptcylog.com', '44.214.59.140']
-CSRF_TRUSTED_ORIGINS = ['bankruptcylog.com', 'www.bankruptcylog.com','44.214.59.140']
+CSRF_TRUSTED_ORIGINS = ['bankruptcylog.com'] 
+CSRF_TRUSTED_ORIGINS = ['https://www.bankruptcylog.com']
 
 # Application definition
 
