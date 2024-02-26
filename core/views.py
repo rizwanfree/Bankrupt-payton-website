@@ -101,24 +101,14 @@ def searchByName(request):
 
 def caseDetails(request, slug):
     name = get_object_or_404(Case, slug=slug)
+    
+    filed = datetime.strptime(name.date_filed, "%m-%d-%Y")
     context = {
         'name': name,
+        'filed_date': filed,
     }
     return render(request, 'core/case-detail.html', context)
 
-
-# def contact_us(request):
-#     form = ContactForm()
-#     context = {'form': form}
-#     if request.method == 'POST':        
-#         form = ContactForm(request.POST)
-#         if form.is_valid():
-#             print(request.POST)
-#             form.save()
-#             return render(request, 'core/contact.html', context)
-#         else:
-#             return render(request, 'core/contact.html', context)
-#     return render(request, 'core/contact.html', context)
 
 def statePage(request):
     return render(request, 'core/states.html', {'states': state_dictionary})
