@@ -16,7 +16,7 @@ Search By State
                 <div class="row">
                     {% for fullName, shortName in states.items %}
                     <span class="col-md-4 h6">
-                        <a href="">{{fullName|upper}} </a>
+                        <a href="{% url "core:bystate" shortName %}">{{fullName|upper}} </a>
                     </span>
                     {% endfor %}
                 </div>
