@@ -124,9 +124,9 @@ def statePage(request):
     return render(request, 'core/states.html', {'states': state_dictionary})
 
 
-def searchByState(request, sid):
+def searchByState(request, sname):
     names = None
-    names = Case.objects.filter(state=sid)
+    names = Case.objects.filter(state=sname)
     # if request.GET.get('search'):
     #     search = request.GET.get('search')
     #     names.filter(name__icontains=search).all()
