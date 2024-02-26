@@ -38,6 +38,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = ['bankruptcylog.com'] 
 CSRF_TRUSTED_ORIGINS = ['https://www.bankruptcylog.com']
+CSRF_TRUSTED_ORIGINS = ['https://bankruptcylog.com']
 
 CORS_ORIGIN_WHITELIST = (
     'bankruptcylog.com',
