@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-v^$hncf3p(2q3++4%qftw7vx-8j79j(-(0c85)@5*n0fu5agxf
 #     SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*'] #['bankruptcylog.com', 'www.bankruptcylog.com']
 
@@ -151,9 +151,9 @@ if DEBUG == True:
     ]
 
 #HTTPS settings
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
 # HSTS Settings
 # SECURE_HSTS_SECONDS = 31536000 # 1year
