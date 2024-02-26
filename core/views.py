@@ -102,7 +102,7 @@ def searchByName(request):
 
 def caseDetails(request, slug):
     name = get_object_or_404(Case, slug=slug)    
-    filed_date = datetime.datetime.strptime(name.date_filed, "%m-%d-%Y")
+    filed_date = datetime.datetime.strptime(name.date_filed, "%d/%m/%Y")
     context = {
         'name': name,
         'filed_date': filed_date,
