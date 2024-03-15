@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
+{% block meta %}
+<meta name="description" content="{{name.first_name|upper}} {{name.last_name|upper}}">
+<meta name="keywords" content="Bankruptcy, usa, Bankrupt, bank, file, {{name.first_name|lower}}, {{name.last_name|lower}}">
+{% endblock meta %}
+
+{% block title %}
+Bankruptcy Case Detail {{name.first_name|upper}} {{name.last_name|upper}}
+{% endblock title %}
+
 {% block content %}
 <br>
 <br>
