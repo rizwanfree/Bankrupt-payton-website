@@ -9,3 +9,8 @@ class StaticViewSitemap(Sitemap):
     
     def location(self, item):
         return reverse(item)
+    
+
+class PostViewSitemap(Sitemap):
+    def items(self):
+        return Case.objects.all()

@@ -33,6 +33,10 @@ class Case(models.Model):
     def save(self, *args, **kwargs):
         self.slug = generate_slug(self.first_name + ' ' + self.last_name)
         return super().save(*args, **kwargs)
+    
+    def get_absolute_url(self):
+        return f'/{self.slug}/
+    
 
 
 
