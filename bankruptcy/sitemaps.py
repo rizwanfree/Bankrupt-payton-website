@@ -5,7 +5,7 @@ from core.models import Case
 
 class StaticViewSitemap(Sitemap):
     def items(self):
-        return ['core:index', 'core:byname', 'core:states', 'core:caseDetails']
+        return ['core:index', 'core:byname', 'core:states']
     
     def location(self, item):
         return reverse(item)
