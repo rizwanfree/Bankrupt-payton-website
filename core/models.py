@@ -35,7 +35,7 @@ class Case(models.Model):
         return super().save(*args, **kwargs)
     
     def get_absolute_url(self):
-        return {self.slug}
+        return f'casedetails/{self.slug}/'
     
 
 
