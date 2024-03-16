@@ -28,7 +28,7 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['bankruptcylog.com', 'www.bankruptcylog.com', '44.214.59.140']
+ALLOWED_HOSTS = ['bankruptcylog.com', 'www.bankruptcylog.com', '44.214.59.140', '127.0.0.1']
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -180,3 +180,12 @@ CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email Setup
+
+EMAIL_HOST = 'mail.privateemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'info@bankruptcylog.com'
+EMAIL_HOST_PASSWORD = 'Payton123!'
+EMAIL_USE_TLS = True
